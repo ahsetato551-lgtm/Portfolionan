@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Noeun Chamnan Portfolio</title>
+    <!-- Google Fonts: Poppins + Inter (Modern & Clean) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* -------------------------------
+        CSS VARIABLES & RESET
+        ------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0B0B0F;
+            --bg-elevated: rgba(20, 20, 30, 0.7);
+            --primary-neon: #00F5FF;
+            --secondary-neon: #7B61FF;
+            --accent-neon: #FF4D8D;
+            --text-white: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 245, 255, 0.2);
+            --card-bg: rgba(18, 18, 28, 0.65);
+            --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a24;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-neon);
+            border-radius: 10px;
+        }
+
+        /* glass utility */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            transition: var(--transition-smooth);
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary-neon);
+            box-shadow: 0 15px 35px rgba(0, 245, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1, h2, h3, .hero-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 3.2rem;
+            background: linear-gradient(135deg, #fff, var(--primary-neon));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 1rem;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, var(--primary-neon), var(--secondary-neon));
+            color: #0B0B0F;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 28px rgba(123, 97, 255, 0.5);
+            background: linear-gradient(105deg, var(--secondary-neon), var(--primary-neon));
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--primary-neon);
+            color: var(--primary-neon);
+            background: rgba(0, 245, 255, 0.05);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-neon);
+            color: #0B0B0F;
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 15px var(--primary-neon);
+        }
+
+        /* ---------- HERO SECTION ---------- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-glow {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 245, 255, 0.2), transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-name {
+            font-size: 5.6rem;
+            line-height: 1.1;
+            background: linear-gradient(125deg, #fff, var(--primary-neon), var(--secondary-neon));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-tag {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--accent-neon);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.3px;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* about */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .profile-img {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.6);
+            border: 1px solid rgba(0,245,255,0.3);
+        }
+        .profile-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .profile-img:hover img {
+            transform: scale(1.02);
+        }
+        .bio-text {
+            color: var(--text-muted);
+            margin: 20px 0;
+            font-size: 1.05rem;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .skill-badge {
+            background: rgba(123, 97, 255, 0.2);
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+            border-left: 2px solid var(--secondary-neon);
+            transition: 0.2s;
+        }
+        .skill-badge:hover {
+            background: var(--secondary-neon);
+            color: #0B0B0F;
+            transform: translateY(-3px);
+        }
+
+        /* Masonry Gallery (CSS Grid) */
+        .poster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+            grid-auto-flow: dense;
+        }
+        .poster-card {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #111118;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .poster-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+        .poster-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .poster-card:hover .poster-overlay {
+            opacity: 1;
+        }
+        .poster-card:hover img {
+            transform: scale(1.05);
+        }
+        .poster-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+        }
+        .poster-category {
+            color: var(--primary-neon);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+        .service-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 77, 141, 0.2);
+            transition: 0.3s;
+        }
+        .service-item i {
+            font-size: 3rem;
+            background: linear-gradient(145deg, var(--primary-neon), var(--accent-neon));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .service-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        .service-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-neon);
+            box-shadow: 0 15px 35px rgba(0, 245, 255, 0.15);
+        }
+
+        /* stats */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-card {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 40px 20px;
+            border: 1px solid rgba(123, 97, 255, 0.4);
+            transition: 0.2s;
+        }
+        .stat-number {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-neon), #fff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            font-size: 1.2rem;
+            margin-top: 8px;
+            color: var(--text-muted);
+        }
+
+        /* testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            padding: 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(0,245,255,0.2);
+        }
+        .testimonial-card i {
+            color: var(--accent-neon);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin: 15px 0;
+            color: #e0e0e0;
+        }
+        .client-name {
+            font-weight: 700;
+            margin-top: 10px;
+            color: var(--primary-neon);
+        }
+
+        /* contact section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-form input, .contact-form textarea {
+            background: rgba(20,20,30,0.7);
+            border: 1px solid rgba(0,245,255,0.3);
+            border-radius: 28px;
+            padding: 16px 22px;
+            font-size: 1rem;
+            color: white;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 10px rgba(0,245,255,0.5);
+        }
+        .contact-form button {
+            background: linear-gradient(100deg, var(--secondary-neon), var(--primary-neon));
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #0B0B0F;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(18,18,28,0.5);
+            padding: 16px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(123,97,255,0.3);
+        }
+        .contact-item i {
+            font-size: 1.6rem;
+            color: var(--primary-neon);
+        }
+        .contact-item a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .contact-item a:hover {
+            color: var(--primary-neon);
+        }
+
+        /* footer */
+        footer {
+            border-top: 1px solid rgba(0, 245, 255, 0.2);
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        .social-links a {
+            color: #ccc;
+            font-size: 1.6rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--primary-neon);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 992px) {
+            .hero-name {
+                font-size: 3.8rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 70px 0;
+            }
+        }
+        @media (max-width: 680px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero-name {
+                font-size: 2.8rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .stats-grid {
+                flex-direction: column;
+            }
+        }
+        /* smooth scroll offset */
+        html {
+            scroll-padding-top: 20px;
+        }
+        .poster-card img {
+            background: #1e1e2a;
+        }
+        /* dummy images with abstract gradient & unsplash but stylish */
+        video{
+            width: 500px;
+            height: 500px;
+            display: flex;
+
+        }
+
+        
+    </style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-name">NOEUN CHAMNAN</div>
+            <div class="hero-tag">✦Graphic Designer✦</div>
+            <p class="hero-desc">Crafting visual stories that break the ordinary — cinematic posters, cultural aesthetics, and future-driven design. Based in NYC, working worldwide.</p>
+            <div class="btn-group">
+                <a href="#featured" class="btn btn-primary"><i class="fas fa-arrow-down"></i> View Portfolio</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT ME -->
+<section id="about">
+    <div class="container">
+        <h2>◈ About Me</h2>
+        <div class="about-grid">
+            <div class="profile-img glass-card">
+                <img src="NQLH5473.PNG" alt="Luna Miro - Poster Designer">
+                <!-- placeholder image, but designer portrait style -->
+            </div>
+            <div>
+                <p class="bio-text">I'm Chamnan, a graphic designer. I am honest, responsible, friendly, and self-confident. I am hardworking and able to work effectively both independently and as part of a team.".</p>
+                <p class="bio-text">Featured in D&AD, Communication Arts, and Adobe Creative. I transform complex narratives into striking visual statements.</p>
+                <div class="skills">
+                    <span class="skill-badge">Poster Design</span>
+                    <span class="skill-badge">Typography Mastery</span>
+                    <span class="skill-badge">Video Editor</span>
+                    <span class="skill-badge">Art Direction</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED POSTERS - MASONRY GRID -->
+<section id="featured">
+    <div class="container">
+        <h2>✦Poster For Freelance</h2>
+        <div class="poster-grid">
+            <!-- poster 1 -->
+            <div class="poster-card glass-card">
+                <img src="Lyly_Poster_Apr_5.jpg" alt="Poster design">
+                <div class="poster-overlay">
+                    <div class="poster-title">ECHO//WAVES</div>
+                    <div class="poster-category">Music Festival</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="Lyly_Poster_May_7.jpg" alt="Poster noir">
+                <div class="poster-overlay">
+                    <div class="poster-title">LUMINA NOIR</div>
+                    <div class="poster-category">Film Poster</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="lyly.jpg" alt="Poster future">
+                <div class="poster-overlay">
+                    <div class="poster-title">NEON METROPOLIS</div>
+                    <div class="poster-category">Art Exhibition</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="lyly​២.jpg" alt="rebel poster">
+                <div class="poster-overlay">
+                    <div class="poster-title">REBEL SOUL</div>
+                    <div class="poster-category">Branding Campaign</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី ក.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី ៧.png" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី​៨.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="ly5.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="burger.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="burger2.png" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="ចិន.jpg" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="SM.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="iPhone 17.jpg" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="b3.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="ស្បែកជើង.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="Untitled-1.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+        </div>
+    </div>
+
+    <!-- FEATURED POSTERS - MASONRY GRID -->
+<section id="featured">
+    <div class="container">
+        <h2>✦Poster For Freelance</h2>
+        <div class="poster-grid">
+            <!-- poster 1 -->
+            <div class="poster-card glass-card">
+                <img src="Lyly_Poster_Apr_5.jpg" alt="Poster design">
+                <div class="poster-overlay">
+                    <div class="poster-title">ECHO//WAVES</div>
+                    <div class="poster-category">Music Festival</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="Lyly_Poster_May_7.jpg" alt="Poster noir">
+                <div class="poster-overlay">
+                    <div class="poster-title">LUMINA NOIR</div>
+                    <div class="poster-category">Film Poster</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="lyly.jpg" alt="Poster future">
+                <div class="poster-overlay">
+                    <div class="poster-title">NEON METROPOLIS</div>
+                    <div class="poster-category">Art Exhibition</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="lyly​២.jpg" alt="rebel poster">
+                <div class="poster-overlay">
+                    <div class="poster-title">REBEL SOUL</div>
+                    <div class="poster-category">Branding Campaign</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី ក.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី ៧.png" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី​៨.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="ly5.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="burger.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="burger2.png" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="ចិន.jpg" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            
+    </div>
+
+    
+    <!-- FEATURED POSTERS - MASONRY GRID -->
+<section id="featured">
+    <div class="container">
+        <h2>✦Poster For Freelance</h2>
+        <div class="poster-grid">
+            <!-- poster 1 -->
+            <div class="poster-card glass-card">
+                <img src="Lyly_Poster_Apr_5.jpg" alt="Poster design">
+                <div class="poster-overlay">
+                    <div class="poster-title">ECHO//WAVES</div>
+                    <div class="poster-category">Music Festival</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="Lyly_Poster_May_7.jpg" alt="Poster noir">
+                <div class="poster-overlay">
+                    <div class="poster-title">LUMINA NOIR</div>
+                    <div class="poster-category">Film Poster</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="lyly.jpg" alt="Poster future">
+                <div class="poster-overlay">
+                    <div class="poster-title">NEON METROPOLIS</div>
+                    <div class="poster-category">Art Exhibition</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="lyly​២.jpg" alt="rebel poster">
+                <div class="poster-overlay">
+                    <div class="poster-title">REBEL SOUL</div>
+                    <div class="poster-category">Branding Campaign</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី ក.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី ៧.png" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="កម្ចី​៨.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="ly5.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="burger.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="burger2.png" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="ចិន.jpg" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="SM.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="iPhone 17.jpg" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+            </div>
+            <div class="poster-card glass-card">
+                <img src="b3.jpg" alt="cosmic">
+                <div class="poster-overlay">
+                    <div class="poster-title">COSMIC DRIFT</div>
+                    <div class="poster-category">Limited Edition</div>
+                </div>
+                </div>
+            <div class="poster-card glass-card">
+                <img src="ស្បែកជើង.png" alt="poster glitch">
+                <div class="poster-overlay">
+                    <div class="poster-title">GLITCH//LOVE</div>
+                    <div class="poster-category">Editorial</div>
+                </div>
+        </div>
+    </div>
+</section>
+<section id="featured">
+    <div class="container">
+        <h2>✦Video Editor</h2>
+        <div class="poster-grid">
+<video autoplay muted loop playsinline>
+    <source src="Nan.mp4" type="video/mp4">
+</video>
+</section>
+
+
+<!-- SERVICES SECTION -->
+<section id="services">
+    <div class="container">
+        <h2>⚡ Creative Services</h2>
+        <div class="services-grid">
+            <div class="service-item glass-card">
+                <i class="fas fa-palette"></i>
+                <h3>Poster Design</h3>
+                <p>Limited edition art prints, event posters, album covers — striking and memorable.</p>
+            </div>
+            <div class="service-item glass-card">
+                <i class="fas fa-hashtag"></i>
+                <h3>Social Media Design</h3>
+                <p>Viral carousels, motion posters & visual identity that stands out on every platform.</p>
+            </div>
+            <div class="service-item glass-card">
+                <i class="fas fa-trademark"></i>
+                <h3>Branding Design</h3>
+                <p>Complete visual systems, logo suites, and brand guidelines with poster soul.</p>
+            </div>
+            <div class="service-item glass-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Marketing Materials</h3>
+                <p>Brochures, flyers, billboards & packaging that captivates audiences.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATISTICS SECTION -->
+<section id="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-number">287+</div><div class="stat-label">Projects Completed</div></div>
+            <div class="stat-card"><div class="stat-number">154</div><div class="stat-label">Happy Clients</div></div>
+            <div class="stat-card"><div class="stat-number">7+</div><div class="stat-label">Years Experience</div></div>
+            <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Awards Won</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="container">
+        <h2>❤️ Kind Words</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card glass-card">
+                <i class="fas fa-star-of-life"></i>
+                <p class="testimonial-text">"Luna's poster for our music festival became the visual identity of the entire season. Pure genius, neon aesthetics that blew our minds."</p>
+                <div class="client-name">— MARCO V. / Festival Director</div>
+            </div>
+            <div class="testimonial-card glass-card">
+                <i class="fas fa-quote-right"></i>
+                <p class="testimonial-text">"Working with Luna was a creative explosion. Her poster designs are immersive, bold, and next-level. Best decision for our brand campaign."</p>
+                <div class="client-name">— JASMINE K. / Creative Lead</div>
+            </div>
+            <div class="testimonial-card glass-card">
+                <i class="fas fa-gem"></i>
+                <p class="testimonial-text">"Incredible attention to typography and composition. The posters she made for us elevated our whole exhibition. A true artist."</p>
+                <div class="client-name">— OLIVER CHEN / Curator</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="container">
+        <h2>📬 Let’s Connect</h2>
+        <div class="contact-wrapper">
+            <div>
+                <form class="contact-form glass-card" action="#" method="post">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <textarea rows="4" placeholder="Tell me about your poster project..."></textarea>
+                    <button type="submit">Send Message <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item"><i class="fas fa-envelope"></i><a href="noeunchamnan27@gmail.com">noeunchamnan27@gmail.com</a></div>
+                <div class="contact-item"><i class="fas fa-phone-alt"></i><span>093 318 655</span></div>
+                <div class="contact-item"><i class="fab fa-telegram-plane"></i><a href="https://t.me/Chomnan27">NOEUN CHAMNAN</a></div>
+                <div class="contact-item"><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com/share/1D46QjoKWa/?mibextid=wwXIfr">Nan</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p style="color: rgba(255,255,255,0.5);">© 2026 LUNA MIRO — Poster Designer. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">✦ Futuristic visions • Bold aesthetics • Award-winning craft ✦</p>
+    </div>
+</footer>
+
+<!-- tiny interaction for smooth link scroll, no external js libs -->
+<script>
+    (function() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#" || targetId === "") return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>
